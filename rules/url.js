@@ -8,10 +8,10 @@ const style = {};
 export default {
   react(node, output, state) {
     state.withinText = true;
-    return React.createElement(Text, {
-      key: state.key,
-      style: style,
-      onPress: () => {},
-    }, output(node.content, state));
+    return (
+      <Text key={state.key} style={style}>
+        {output(node.content, state)}
+      </Text>
+    );
   },
 };

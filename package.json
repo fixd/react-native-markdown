@@ -6,7 +6,7 @@
   },
   "version": "0.1.1",
   "description": "A component for rendering Markdown in React Native",
-  "main": "Markdown.js",
+  "main": "index.js",
   "author": "Lochlan Wansbrough <lochie@live.com> (http://lwansbrough.com)",
   "dependencies": {
     "lodash": "^3.6.0",

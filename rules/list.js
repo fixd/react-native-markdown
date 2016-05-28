@@ -19,23 +19,32 @@ const itemStyle = {
 
 const style = {};
 
+function renderBullet(number) {
+  if (number) {
+    return <Text style={numberStyle}>{number + 1}{". "}</Text>;
+  }
+  else {
+    return <Text style={bulletStyle}>{"\u2022  "}</Text>;
+  }
+}
+
+function renderItems(node, output, state) {
+  return node.items.map(function(item, i) {
+    return (
+      <View key={i} style={itemStyle}>
+        {renderBullet(node.ordered && i)}
+        {output(item, state)}
+      </View>
+    );
+  });
+}
+
 export default {
   react(node, output, state) {
-
-    var items = node.items.map(function(item, i) {
-      var bullet;
-      if (node.ordered) {
-        bullet = React.createElement(Text, { style: numberStyle }, (i + 1) + ". ");
-      }
-      else {
-        bullet = React.createElement(Text, { style: bulletStyle }, "\u2022 ");
-      }
-      return React.createElement(View, {
-        key: i,
-        style: itemStyle,
-      }, [bullet, output(item, state)]);
-    });
-
-    return React.createElement(View, { key: state.key, style: style }, items);
+    return (
+      <View key={state.key} style={style}>
+        {renderItems(node, output, state)}
+      </View>
+    );
   },
 };

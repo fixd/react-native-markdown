@@ -37,30 +37,55 @@ const style = {
   borderRadius: 3,
 };
 
+function renderHeaderCells(headerCells, output, state) {
+  return headerCells.map(function(content) {
+    return (
+      <Text style={headerCellStyle}>
+        {output(content, state)}
+      </Text>
+    );
+  });
+}
+
+function renderHeader(header, output, state) {
+  return (
+    <View style={headerRowStyle}>
+      {renderHeaderCells(header, output, state)}
+    </View>
+  );
+}
+
+function renderCells(cells, output, state) {
+  return cells.map(function(content, columnIndex) {
+    return (
+      <View key={columnIndex} style={cellStyle}>
+        {output(content, state)}
+      </View>
+    );
+  });
+}
+
+function renderRows(rows, output, state) {
+  return rows.map(function(cells, rowIndex) {
+    const rowStyles = [rowStyle];
+    if (rowIndex === rows.length - 1) {
+      rowStyles.push(lastRowStyle);
+    }
+    return (
+      <View key={rowIndex} style={rowStyles}>
+        {renderCells(cells, output, state)}
+      </View>
+    );
+  });
+}
+
 export default {
   react(node, output, state) {
-    var headers = node.header.map(function(content) {
-      return React.createElement(Text, {
-        style: headerCellStyle,
-      }, output(content, state));
-    });
-
-    var header = React.createElement(View, { style: headerRowStyle }, headers);
-
-    var rows = node.cells.map(function(row, r) {
-      var cells = row.map(function(content, c) {
-        return React.createElement(View, {
-          key: c,
-          style: cellStyle,
-        }, output(content, state));
-      });
-      var rowStyles = [rowStyle];
-      if (node.cells.length - 1 == r) {
-        rowStyles.push(lastRowStyle);
-      }
-      return React.createElement(View, { key: r, style: rowStyles }, cells);
-    });
-
-    return React.createElement(View, { key: state.key, style: style }, [ header, rows ]);
+    return (
+      <View key={state.key} style={style}>
+        {renderHeader(node.header, output, state)}
+        {renderRows(node.cells, output, state)}
+      </View>
+    );
   },
 };

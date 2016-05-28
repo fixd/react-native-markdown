@@ -3,15 +3,17 @@ import {
   Text,
 } from "react-native";
 
-const style = {
-
-};
+const style = {};
 
 export default {
   react(node, output, state) {
-    return React.createElement(Text, {
-      key: state.key,
-      style: style,
-    }, "\n\n");
+    return (
+      <Text
+        style={style}
+        key={state.key}
+      >
+        {"\n"}
+      </Text>
+    );
   },
 };

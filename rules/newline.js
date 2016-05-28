@@ -9,9 +9,10 @@ const style = {
 
 export default {
   react(node, output, state) {
-    return React.createElement(Text, {
-      key: state.key,
-      style: style,
-    }, "\n");
+    return (
+      <Text key={state.key} style={style}>
+        {"\n"}
+      </Text>
+    );
   },
 };

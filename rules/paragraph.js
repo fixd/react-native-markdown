@@ -14,9 +14,10 @@ const style = {
 
 export default {
   react(node, output, state) {
-    return React.createElement(View, {
-      key: state.key,
-      style: style,
-    }, output(node.content, state));
+    return (
+      <View key={state.key} style={style}>
+        {output(node.content, state)}
+      </View>
+    );
   },
 };
