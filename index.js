@@ -15,7 +15,7 @@ class Markdown extends Component {
   render() {
     const child = _.isArray(this.props.children)
       ? this.props.children.join("") : this.props.children;
-    const tree = this.parser(child, {inline: false});
+    const tree = this.parser(`${child}\n\n`, {inline: false});
     return <View>{this.renderer(tree)}</View>;
   }
 }

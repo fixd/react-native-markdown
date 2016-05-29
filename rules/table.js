@@ -1,13 +1,15 @@
 import React from "react";
 import {
-  Text,
   View,
 } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 
-const headerCellStyle = {
+const headerCellTextStyle = {
   color: "#ffffff",
   fontWeight: "bold",
+};
+
+const headerCellStyle = {
   padding: 5,
 };
 
@@ -40,10 +42,14 @@ const style = {
 
 function renderHeaderCells(headerCells, output, state) {
   return headerCells.map(function(content) {
+    state.textStyle = {
+      ...state.textStyle,
+      ...headerCellTextStyle,
+    };
     return (
-      <Text style={headerCellStyle}>
+      <View style={headerCellStyle}>
         {output(content, state)}
-      </Text>
+      </View>
     );
   });
 }

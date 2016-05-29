@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Text,
+  View,
 } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 
@@ -9,6 +9,8 @@ const style = {
   borderColor: "#dddddd",
   borderRadius: 3,
   borderWidth: 1,
+};
+const textStyle = {
   fontFamily: "Courier",
   fontWeight: "bold",
 };
@@ -16,11 +18,14 @@ const style = {
 export default {
   ...SimpleMarkdown.defaultRules.inlineCode,
   react(node, output, state) {
-    state.withinText = true;
+    state.textStyle = {
+      ...state.textStyle,
+      ...textStyle,
+    };
     return (
-      <Text key={state.key} style={style}>
+      <View key={state.key} style={style}>
         {output(node.content, state)}
-      </Text>
+      </View>
     );
   },
 };

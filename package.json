@@ -1,19 +1,72 @@
 {
-  "name": "react-native-markdown",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lwansbrough/react-native-markdown.git"
+  "_args": [
+    [
+      {
+        "hosted": {
+          "directUrl": "https://raw.githubusercontent.com/michaelphines/react-native-markdown/master/package.json",
+          "gitUrl": "git://github.com/michaelphines/react-native-markdown.git",
+          "httpsUrl": "git+https://github.com/michaelphines/react-native-markdown.git",
+          "shortcut": "github:michaelphines/react-native-markdown",
+          "ssh": "git@github.com:michaelphines/react-native-markdown.git",
+          "sshUrl": "git+ssh://git@github.com/michaelphines/react-native-markdown.git",
+          "type": "github"
+        },
+        "name": null,
+        "raw": "git+https://git@github.com:michaelphines/react-native-markdown.git",
+        "rawSpec": "git+https://git@github.com:michaelphines/react-native-markdown.git",
+        "scope": null,
+        "spec": "git+ssh://git@github.com/michaelphines/react-native-markdown.git",
+        "type": "hosted"
+      },
+      "/Users/michaelhines/Projects/RedditClient"
+    ]
+  ],
+  "_from": "git+ssh://git@github.com/michaelphines/react-native-markdown.git",
+  "_id": "react-native-markdown@0.1.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-markdown",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/michaelphines/react-native-markdown/master/package.json",
+      "gitUrl": "git://github.com/michaelphines/react-native-markdown.git",
+      "httpsUrl": "git+https://github.com/michaelphines/react-native-markdown.git",
+      "shortcut": "github:michaelphines/react-native-markdown",
+      "ssh": "git@github.com:michaelphines/react-native-markdown.git",
+      "sshUrl": "git+ssh://git@github.com/michaelphines/react-native-markdown.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "git+https://git@github.com:michaelphines/react-native-markdown.git",
+    "rawSpec": "git+https://git@github.com:michaelphines/react-native-markdown.git",
+    "scope": null,
+    "spec": "git+ssh://git@github.com/michaelphines/react-native-markdown.git",
+    "type": "hosted"
   },
-  "version": "0.1.1",
-  "description": "A component for rendering Markdown in React Native",
-  "main": "index.js",
-  "author": "Lochlan Wansbrough <lochie@live.com> (http://lwansbrough.com)",
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+ssh://git@github.com/michaelphines/react-native-markdown.git#a66efca87544625aebfc94a410d0f927b8a573e6",
+  "_shasum": "173b6345ee4fe620a646a35ac77e2797784451f6",
+  "_shrinkwrap": null,
+  "_spec": "git+https://git@github.com:michaelphines/react-native-markdown.git",
+  "_where": "/Users/michaelhines/Projects/RedditClient",
+  "author": {
+    "email": "lochie@live.com",
+    "name": "Lochlan Wansbrough",
+    "url": "http://lwansbrough.com"
+  },
+  "bugs": {
+    "url": "https://github.com/lwansbrough/react-native-markdown/issues"
+  },
   "dependencies": {
     "simple-markdown": "git://github.com/lwansbrough/simple-markdown.git"
   },
-  "peerDependencies": {
-    "react-native": "*"
-  },
+  "description": "A component for rendering Markdown in React Native",
+  "devDependencies": {},
+  "gitHead": "a66efca87544625aebfc94a410d0f927b8a573e6",
+  "homepage": "https://github.com/lwansbrough/react-native-markdown#readme",
   "keywords": [
     "react",
     "native",
@@ -21,5 +74,18 @@
     "md",
     "parse",
     "parser"
-  ]
+  ],
+  "main": "index.js",
+  "name": "react-native-markdown",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react-native": "*"
+  },
+  "readme": "# react-native-markdown\n\nA component for rendering Markdown in React Native. Pull requests welcome.\n\n## Known issues\n\n- Due to [a bug](https://github.com/facebook/react-native/issues/824) in underlying layout engine for React Native ([facebook/css-layout](https://github.com/facebook/css-layout)), this module will put your application in an infinite loop unless you patch the upstream changes from `css-layout`'s' `Layout.c` and `Layout.h` files.\n\n## Getting started\n\n1. `npm install react-native-markdown --save`\n\n## Usage\n\nAll you need is to `require` the `react-native-markdown` module and then use the\n`<Markdown/>` tag.\n\n```javascript\nvar React = require('react-native');\nvar {\n  AppRegistry,\n  StyleSheet,\n  View\n} = React;\nvar Markdown = require('react-native-markdown');\n\nvar mdApp = React.createClass({\n  render: function() {\n    return (\n      <View>\n        <Markdown>\n          Some *really* basic **Markdown**.\n          {'\\n\\n'}\n          | # | Name   | Age |{'\\n'}\n          |---|--------|-----|{'\\n'}\n          | 1 | John   | 19  |{'\\n'}\n          | 2 | Sally  | 18  |{'\\n'}\n          | 3 | Stream | 20  |{'\\n'}\n        </Markdown>\n      </View>\n    );\n  }\n});\n\nAppRegistry.registerComponent('mdApp', () => mdApp);\n```\n\n## Properties\n\n#### `style`\n\nDefault style properties will be applied to the markdown. You will likely want to customize these styles, the following properties can be used to modify the rendered elements:\n\n*Note: The text inside the parentheses denotes the element type.*\n\n- `autolink` (`<Text>`) - WIP\n- `blockQuote` (`<Text>`) - WIP\n- `br` (`<Text>`)\n- `codeBlock` (`<View>`) - WIP\n- `del` (`<Text>`)\n- `em` (`<Text>`)\n- `heading` (`<Text>`) - Also `heading1` through `heading6`\n- `hr` (`<View>`)\n- `image` (`<Image>`) - Implemented but size is fixed to `50x50` until auto width is supported by React Native.\n- `inlineCode` (`<Text>`)\n- `link` (`<Text>`) - WIP\n- `list` (`<View>`) - Also `listItem` (`<View>`), `listItemBullet` (`<Text>`) and `listItemNumber` (`<Text>`)\n- `mailto` (`<Text>`) - WIP\n- `newline` (`<Text>`) - WIP\n- `paragraph` (`<View>`)\n- `plainText` (`<Text>`) - Use for styling text without any associated styles\n- `strong` (`<Text>`)\n- `table` (`<View>`)\n- `tableHeader` (`<View>`)\n- `tableHeaderCell` (`<Text>`)\n- `tableRow` (`<View>`)\n- `tableRowCell` (`<View>`)\n- `tableRowLast` (`<View>`, inherits from `tableRow`)\n- `text` (`<Text>`) - Inherited by all text based elements\n- `u` (`<View>`)\n- `url` (`<Text>`)\n- `view` (`<View>`) - This is the container `View` that the Markdown is rendered in.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lwansbrough/react-native-markdown.git"
+  },
+  "version": "0.1.1"
 }

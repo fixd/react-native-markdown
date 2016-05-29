@@ -4,15 +4,21 @@ import {
 } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 
-const style = {
-  borderColor: "#222222",
-  borderBottomWidth: 1,
+const style = {};
+
+const textStyle = {
+  textDecorationLine: "underline",
+  textDecorationStyle: "solid",
 };
 
 export default {
   ...SimpleMarkdown.defaultRules.u,
   react(node, output, state) {
-    state.withinText = true;
+    // TODO: line-through and underline
+    state.textStyle = {
+      ...state.textStyle,
+      ...textStyle,
+    };
     return (
       <View key={state.key} style={style}>
         {output(node.content, state)}

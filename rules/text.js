@@ -11,10 +11,10 @@ const style = {
 
 export default {
   ...SimpleMarkdown.defaultRules.text,
-  react(node) {
+  react(node, output, state) {
     return (
       <View>
-        <Text style={style}>
+        <Text style={[style, state.textStyle]}>
           {node.content}
         </Text>
       </View>

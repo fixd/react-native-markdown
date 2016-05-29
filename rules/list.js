@@ -20,12 +20,12 @@ const itemStyle = {
 
 const style = {};
 
-function renderBullet(number) {
+function renderBullet(number, inheritedStyle) {
   if (number) {
-    return <Text style={numberStyle}>{number + 1}{". "}</Text>;
+    return <Text style={[numberStyle, inheritedStyle]}>{number + 1}{". "}</Text>;
   }
   else {
-    return <Text style={bulletStyle}>{"\u2022  "}</Text>;
+    return <Text style={[bulletStyle, inheritedStyle]}>{"\u2022  "}</Text>;
   }
 }
 
@@ -33,7 +33,7 @@ function renderItems(node, output, state) {
   return node.items.map(function(item, i) {
     return (
       <View key={i} style={itemStyle}>
-        {renderBullet(node.ordered && i)}
+        {renderBullet(node.ordered && i, state.textStyle)}
         {output(item, state)}
       </View>
     );

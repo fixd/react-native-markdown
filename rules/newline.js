@@ -12,7 +12,7 @@ export default {
   ...SimpleMarkdown.defaultRules.newline,
   react(node, output, state) {
     return (
-      <Text key={state.key} style={style}>
+      <Text key={state.key} style={[style, state.textStyle]}>
         {"\n"}
       </Text>
     );

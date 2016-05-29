@@ -1,21 +1,26 @@
 import React from "react";
 import {
-  Text,
+  View,
 } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 
-const style = {
+const style = {};
+
+const textStyle = {
   fontWeight: "200",
 };
 
 export default {
   ...SimpleMarkdown.defaultRules.heading,
   react(node, output, state) {
-    state.withinText = true;
+    state.textStyle = {
+      ...state.textStyle,
+      ...textStyle,
+    };
     return (
-      <Text key={state.key} style={style}>
+      <View key={state.key} style={style}>
         {output(node.content, state)}
-      </Text>
+      </View>
     );
   },
 };

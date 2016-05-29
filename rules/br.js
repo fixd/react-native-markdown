@@ -10,10 +10,7 @@ export default {
   ...SimpleMarkdown.defaultRules.br,
   react(node, output, state) {
     return (
-      <Text
-        style={style}
-        key={state.key}
-      >
+      <Text style={style} key={state.key}>
         {"\n"}
       </Text>
     );

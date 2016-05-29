@@ -14,8 +14,8 @@ export default {
   react(node, output, state) {
     state.withinText = true;
     return (
-      <Text key={state.key}  style={style}>
-        {output(node.content, state)}
+      <Text key={state.key} style={style}>
+        {node.content}
       </Text>
     );
   },
