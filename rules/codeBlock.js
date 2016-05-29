@@ -2,6 +2,7 @@ import React from "react";
 import {
   Text,
 } from "react-native";
+import SimpleMarkdown from "simple-markdown";
 
 const style = {
   fontFamily: "Courier",
@@ -9,6 +10,7 @@ const style = {
 };
 
 export default {
+  ...SimpleMarkdown.defaultRules.codeBlock,
   react(node, output, state) {
     state.withinText = true;
     return (

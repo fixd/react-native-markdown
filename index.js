@@ -4,24 +4,18 @@ import {
 } from "react-native";
 import _ from "lodash";
 import SimpleMarkdown from "simple-markdown";
+import rules from "./rules";
 
 class Markdown extends Component {
   componentWillMount() {
-    var rules = require("./rules");
-    rules = _.merge({}, SimpleMarkdown.defaultRules, rules);
-
-    var parser = SimpleMarkdown.parserFor(rules);
-    this.parse = function(source) {
-      var blockSource = source + "\n\n";
-      return parser(blockSource, {inline: false});
-    };
+    this.parser = SimpleMarkdown.parserFor({...SimpleMarkdown.defaultRules, ...rules});
     this.renderer = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, "react"));
   }
 
   render() {
-    var child = _.isArray(this.props.children)
+    const child = _.isArray(this.props.children)
       ? this.props.children.join("") : this.props.children;
-    var tree = this.parse(child);
+    const tree = this.parser(child, {inline: false});
     return <View>{this.renderer(tree)}</View>;
   }
 }

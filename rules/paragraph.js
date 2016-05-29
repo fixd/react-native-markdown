@@ -2,6 +2,7 @@ import React from "react";
 import {
   View,
 } from "react-native";
+import SimpleMarkdown from "simple-markdown";
 
 const style = {
   marginTop: 10,
@@ -13,6 +14,7 @@ const style = {
 };
 
 export default {
+  ...SimpleMarkdown.defaultRules.paragraph,
   react(node, output, state) {
     return (
       <View key={state.key} style={style}>

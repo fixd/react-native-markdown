@@ -9,7 +9,6 @@
   "main": "index.js",
   "author": "Lochlan Wansbrough <lochie@live.com> (http://lwansbrough.com)",
   "dependencies": {
-    "lodash": "^3.6.0",
     "simple-markdown": "git://github.com/lwansbrough/simple-markdown.git"
   },
   "peerDependencies": {

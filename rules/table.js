@@ -3,6 +3,7 @@ import {
   Text,
   View,
 } from "react-native";
+import SimpleMarkdown from "simple-markdown";
 
 const headerCellStyle = {
   color: "#ffffff",
@@ -80,6 +81,7 @@ function renderRows(rows, output, state) {
 }
 
 export default {
+  ...SimpleMarkdown.defaultRules.table,
   react(node, output, state) {
     return (
       <View key={state.key} style={style}>

@@ -3,6 +3,7 @@ import {
   Text,
   View,
 } from "react-native";
+import SimpleMarkdown from "simple-markdown";
 
 const numberStyle = {
   fontWeight: "bold",
@@ -40,6 +41,7 @@ function renderItems(node, output, state) {
 }
 
 export default {
+  ...SimpleMarkdown.defaultRules.list,
   react(node, output, state) {
     return (
       <View key={state.key} style={style}>

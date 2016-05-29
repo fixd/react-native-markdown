@@ -2,6 +2,7 @@ import React from "react";
 import {
   View,
 } from "react-native";
+import SimpleMarkdown from "simple-markdown";
 
 const style = {
   borderColor: "#222222",
@@ -9,6 +10,7 @@ const style = {
 };
 
 export default {
+  ...SimpleMarkdown.defaultRules.u,
   react(node, output, state) {
     state.withinText = true;
     return (
