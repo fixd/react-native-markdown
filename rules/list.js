@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Text,
   View,
 } from "react-native";
 import SimpleMarkdown from "simple-markdown";
@@ -16,16 +15,43 @@ const bulletStyle = {
 
 const itemStyle = {
   flexDirection: "row",
+  flexWrap: "wrap",
 };
 
-const style = {};
+const style = {
+  flexDirection: "column",
+  marginLeft: 15,
+  marginTop: 10,
+};
 
-function renderBullet(number, inheritedStyle) {
-  if (number) {
-    return <Text style={[numberStyle, inheritedStyle]}>{number + 1}{". "}</Text>;
+function renderBullet(number, output, state) {
+  if (typeof number === "number") {
+    const newState = {
+      ...state,
+      textStyle: {
+        ...state.textStyle,
+        ...numberStyle,
+      },
+    };
+
+    return output({
+      content: `${number + 1}. `,
+      type: "text",
+    }, newState);
   }
   else {
-    return <Text style={[bulletStyle, inheritedStyle]}>{"\u2022  "}</Text>;
+    const newState = {
+      ...state,
+      textStyle: {
+        ...state.textStyle,
+        ...bulletStyle,
+      },
+    };
+
+    return output({
+      content: "\u2022 ",
+      type: "text",
+    }, newState);
   }
 }
 
@@ -33,7 +59,7 @@ function renderItems(node, output, state) {
   return node.items.map(function(item, i) {
     return (
       <View key={i} style={itemStyle}>
-        {renderBullet(node.ordered && i, state.textStyle)}
+        {renderBullet(node.ordered && i, output, state)}
         {output(item, state)}
       </View>
     );

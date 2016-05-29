@@ -2,6 +2,7 @@ import autolink from "./autolink";
 import blockQuote from "./blockQuote";
 import br from "./br";
 import codeBlock from "./codeBlock";
+import def from "./del";
 import del from "./del";
 import em from "./em";
 import heading from "./heading";
@@ -24,6 +25,7 @@ export default {
   blockQuote,
   br,
   codeBlock,
+  def,
   del,
   em,
   heading,

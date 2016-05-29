@@ -42,13 +42,16 @@ const style = {
 
 function renderHeaderCells(headerCells, output, state) {
   return headerCells.map(function(content) {
-    state.textStyle = {
-      ...state.textStyle,
-      ...headerCellTextStyle,
+    const newState = {
+      ...state,
+      textStyle: {
+        ...state.textStyle,
+        ...headerCellTextStyle,
+      },
     };
     return (
       <View style={headerCellStyle}>
-        {output(content, state)}
+        {output(content, newState)}
       </View>
     );
   });

@@ -15,13 +15,17 @@ export default {
   ...SimpleMarkdown.defaultRules.del,
   react(node, output, state) {
     // TODO: line-through and underline
-    state.textStyle = {
-      ...state.textStyle,
-      ...textStyle,
+    const newState = {
+      ...state,
+      textStyle: {
+        ...state.textStyle,
+        ...textStyle,
+      },
     };
+
     return (
       <View key={state.key} style={style}>
-        {output(node.content, state)}
+        {output(node.content, newState)[0]}
       </View>
     );
   },

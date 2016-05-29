@@ -1,19 +1,36 @@
 import React from "react";
 import {
-  View,
+  TouchableOpacity,
 } from "react-native";
 import SimpleMarkdown from "simple-markdown";
 
-const style = {};
+const style = {
+  flexDirection: "row",
+  flexWrap: "wrap",
+};
+
+const textStyle = {
+  color: "#0000FF",
+  textDecorationLine: "underline",
+  textDecorationStyle: "solid",
+};
 
 export default {
   ...SimpleMarkdown.defaultRules.link,
   react(node, output, state) {
-    state.withinText = true;
+    const newState = {
+      ...state,
+      textStyle: {
+        ...state.textStyle,
+        ...textStyle,
+      },
+      noWrap: true,
+    };
+
     return (
-      <View key={state.key} style={style}>
-        {output(node.content, state)}
-      </View>
+      <TouchableOpacity style={style} key={state.key}>
+        {output(node.content, newState)}
+      </TouchableOpacity>
     );
   },
 };

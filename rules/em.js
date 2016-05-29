@@ -1,10 +1,4 @@
-import React from "react";
-import {
-  View,
-} from "react-native";
 import SimpleMarkdown from "simple-markdown";
-
-const style = {};
 
 const textStyle = {
   fontStyle: "italic",
@@ -13,14 +7,14 @@ const textStyle = {
 export default {
   ...SimpleMarkdown.defaultRules.em,
   react(node, output, state) {
-    state.textStyle = {
-      ...state.textStyle,
-      ...textStyle,
+    const newState = {
+      ...state,
+      textStyle: {
+        ...state.textStyle,
+        ...textStyle,
+      },
     };
-    return (
-      <View key={state.key} style={style}>
-        {output(node.content, state)}
-      </View>
-    );
+
+    return output(node.content, newState);
   },
 };
