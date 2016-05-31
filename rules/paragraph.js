@@ -9,8 +9,6 @@ const style = {
   marginBottom: 3,
   flexWrap: "wrap",
   flexDirection: "row",
-  // alignItems: "flex-start",
-  // justifyContent: "flex-start",
 };
 
 export default {
