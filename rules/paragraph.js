@@ -5,8 +5,8 @@ import {
 import SimpleMarkdown from "simple-markdown";
 
 const style = {
-  marginTop: 10,
-  marginBottom: 10,
+  marginTop: 3,
+  marginBottom: 3,
   flexWrap: "wrap",
   flexDirection: "row",
   // alignItems: "flex-start",
