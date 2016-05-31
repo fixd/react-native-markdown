@@ -7,20 +7,20 @@ import SimpleMarkdown from "simple-markdown";
 export default {
   ...SimpleMarkdown.defaultRules.text,
   react(node, output, state) {
-    if (state.noWrap) {
+    const text = node.content.
+      replace(/\n/g, " ").
+      replace(/ /g, "\u00A0");
+    const words = text.split(/\b(?![ \u00A0])/);
+    return words.map((word, i) => {
       return (
-        <Text key={state.key} style={state.textStyle}>
-          {node.content}
+        <Text
+          key={`${state.key}::${i}`}
+          style={state.textStyle}
+          onPress={() => state.link && state.onLinkPress && state.onLinkPress(state.link)}
+        >
+          {word}
         </Text>
       );
-    } else {
-      const words = node.content.split(" ");
-      return words.map((word, i) => {
-        if (i != words.length - 1) {
-          word = word + " ";
-        }
-        return <Text key={`${state.key}::${i}`} style={state.textStyle}>{word}</Text>;
-      });
-    }
+    });
   },
 };

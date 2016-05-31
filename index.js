@@ -48,7 +48,7 @@ function collapseConsecutiveTextNodes(nodes) {
 }
 
 const style = {
-  flexDirection: "column",
+  flexWrap: "wrap",
 };
 
 class Markdown extends Component {
@@ -58,14 +58,20 @@ class Markdown extends Component {
   }
 
   render() {
-    const tree = this.parser(`${this.props.text}\n\n`, {inline: false});
+    const tree = this.parser(`${this.props.text}\n\n`, null, {
+      inline: false,
+    });
     const collapsedTree = collapseConsecutiveTextNodes(tree);
-    return <View style={style}>{this.renderer(collapsedTree)}</View>;
+    const renderedElements = this.renderer(collapsedTree, {
+      onLinkPress: this.props.onLinkPress,
+    });
+    return <View style={style}>{renderedElements}</View>;
   }
 }
 
 Markdown.propTypes = {
   text: React.PropTypes.string,
+  onLinkPress: React.PropTypes.func,
 };
 
 export default Markdown;

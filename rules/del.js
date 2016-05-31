@@ -1,10 +1,4 @@
-import React from "react";
-import {
-  View,
-} from "react-native";
 import SimpleMarkdown from "simple-markdown";
-
-const style = {};
 
 const textStyle = {
   textDecorationLine: "line-through",
@@ -23,10 +17,6 @@ export default {
       },
     };
 
-    return (
-      <View key={state.key} style={style}>
-        {output(node.content, newState)[0]}
-      </View>
-    );
+    return output(node.content, newState)[0];
   },
 };
