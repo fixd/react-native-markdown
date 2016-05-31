@@ -18,7 +18,7 @@ export default {
           <Text
             key={key}
             style={state.textStyle}
-            onPress={state.onLinkPress}
+            onPress={() => state.onLinkPress(state.link)}
           >
             {word}
           </Text>
