@@ -1,14 +1,9 @@
-import React from "react";
-import {
-  View,
-} from "react-native";
 import SimpleMarkdown from "simple-markdown";
-
-const style = {};
 
 const textStyle = {
   textDecorationLine: "underline",
   textDecorationStyle: "solid",
+  marginLeft: -1,
 };
 
 export default {
@@ -22,10 +17,6 @@ export default {
         ...textStyle,
       },
     };
-    return (
-      <View key={state.key} style={style}>
-        {output(node.content, newState)}
-      </View>
-    );
+    return output(node.content, newState);
   },
 };
