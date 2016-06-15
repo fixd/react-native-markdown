@@ -2,7 +2,7 @@ import React from "react";
 import {
   View,
 } from "react-native";
-import SimpleMarkdown from "simple-markdown";
+import SimpleMarkdown, { blockRegex } from "simple-markdown";
 
 const style = {
   marginTop: 3,
@@ -13,6 +13,7 @@ const style = {
 
 export default {
   ...SimpleMarkdown.defaultRules.paragraph,
+  match: blockRegex(/^((?:[^\n]|\n(?! *\n| *>))+)(?:\n *)+(?:\n|(?=>))/),
   react(node, output, state) {
     return (
       <View key={state.key} style={style}>
