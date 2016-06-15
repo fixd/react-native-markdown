@@ -64,6 +64,7 @@ class Markdown extends Component {
     const collapsedTree = collapseConsecutiveTextNodes(tree);
     const renderedElements = this.renderer(collapsedTree, {
       onLinkPress: this.props.onLinkPress,
+      textStyle: { fontSize: 14, lineHeight: 19, fontWeight: "100" },
     });
     return <View style={style}>{renderedElements}</View>;
   }
