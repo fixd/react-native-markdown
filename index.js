@@ -52,10 +52,12 @@ const style = {
 };
 
 class Markdown extends Component {
-  componentWillMount() {
-    this.parser = SimpleMarkdown.parserFor({...SimpleMarkdown.defaultRules, ...rules});
-    this.renderer = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, "react"));
-  }
+
+	constructor(props) {
+		super(props);
+	    this.parser = SimpleMarkdown.parserFor({...SimpleMarkdown.defaultRules, ...rules});
+	    this.renderer = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, "react"));
+	}
 
   render() {
     const tree = this.parser(`${this.props.text}\n\n`, null, {
@@ -64,15 +66,16 @@ class Markdown extends Component {
     const collapsedTree = collapseConsecutiveTextNodes(tree);
     const renderedElements = this.renderer(collapsedTree, {
       onLinkPress: this.props.onLinkPress,
-      textStyle: { fontSize: 14, lineHeight: 19, fontWeight: "100" },
+	    textStyle: Object.assign({}, { fontSize: 14, lineHeight: 19, fontWeight: "100" }, this.props.textStyle),
     });
     return <View style={style}>{renderedElements}</View>;
   }
 }
 
 Markdown.propTypes = {
+	textStyle: React.PropTypes.object,
   text: React.PropTypes.string,
   onLinkPress: React.PropTypes.func,
 };
 
-export default Markdown;
+module.exports = Markdown
